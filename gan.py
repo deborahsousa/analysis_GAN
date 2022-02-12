@@ -19,7 +19,7 @@ if __name__ == "__main__":
 
     with open('result.csv', 'w') as f:
 
-        header = f"id,rotulo,long,lat"
+        header = f"id,rotulo,long,lat,area_irrig"
         for y in interest_years:
             for m in interest_month:
                 header += f",{m}/{y}"
@@ -32,6 +32,7 @@ if __name__ == "__main__":
             rotulo = pump["intervencao"]["rotulo"]
             long = pump["intervencao"]["longitude"]
             lat = pump["intervencao"]["latitude"]
+            area_irrig = pump["intervencao"]["propriedade"]["areaIrrigada"]
 
             historic_serie = get_historic_serie(pump["intervencao"]["id"])
             vazao = historic_serie[0]
@@ -51,7 +52,7 @@ if __name__ == "__main__":
                     days_without_data = len([d for d in data_by_day["valorDiarios"] if d is None])
                     results.append(days_without_data)
 
-            out = f"{id},{rotulo},{long},{lat}"
+            out = f"{id},{rotulo},{long},{lat},{area_irrig}"
             for r in results:
                 out += f",{r}"
 
