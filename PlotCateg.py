@@ -205,7 +205,7 @@ def PlotDemanda_categoria_unico(eixoy,serie_datas,matriz_demanda,matriz_carac,ti
          markeredgecolor=c, markeredgewidth=0.25,markersize=ms)
     if eixoy == "Volume consumido (m³)":
         plt.ticklabel_format(axis="y", style="sci", scilimits=(0,0))
-        plt.ylim(0, 2.5e5)
+        plt.ylim(0, 2.8e5)
         plt.ylabel(eixoy+"x 10$^5$", color='black')
     else:
         plt.ylim(0, 2.8)
@@ -263,6 +263,7 @@ def Plot2OfertaDemanda_irrigante(eixoy1,eixoy2,eixoy3,serie_datas,serie_oferta1,
     ax3.set_ylim(0,700)
     ax3.set_ylabel(eixoy3, color='b')
     ax3.tick_params(axis='y', colors='b')
+
     xs = np.linspace(0,2322,1)
     ys = np.linspace(0,700,1)
     #ax3.axvline(x='1/AGO/2018', ymin=0.0, ymax=700.0,linestyle='dashed',label='Restrição',linewidth=0.2,color='red')
@@ -287,36 +288,143 @@ def Plot2OfertaDemanda_irrigante(eixoy1,eixoy2,eixoy3,serie_datas,serie_oferta1,
         m_f = matriz_demanda[:, list]
         ax2.plot(serie_datas,m_f, 'o', linestyle='None', label='Irrigante nº'+str(i+1),markerfacecolor="None",
             markeredgecolor=c, markeredgewidth=0.5, markersize=3)
-    ax2.legend(loc='upper left', fontsize='x-small',ncol=11,bbox_to_anchor=(-0.1, -0.35))
-    ax2.set_ylabel(eixoy2, color='black')
-    ax2.tick_params(axis='y', colors='black')
     ax2.xaxis.grid(b=True, which='major', color='.9', linestyle='--')  # linhas de grade do eixo x
     ax2.yaxis.grid(b=True, which='major', color='.9', linestyle='--')  # linhas de grade do eixo y
-    ax2.axvline(x='1/JUL/2018', ymin=0.0, ymax=700.0,linestyle='dashed',label='Atenção',linewidth=0.4,color='y')
-    ax2.axvline(x='1/JUL/2019', ymin=0.0, ymax=700.0,linestyle='dashed',label='Atenção',linewidth=0.4,color='y')
-    ax2.axvline(x='1/JUL/2020', ymin=0.0, ymax=700.0,linestyle='dashed',label='Atenção',linewidth=0.4,color='y')
-    ax2.axvline(x='1/JUL/2021', ymin=0.0, ymax=700.0,linestyle='dashed',label='Atenção',linewidth=0.4,color='y')
-    ax2.axvline(x='1/JUL/2022', ymin=0.0, ymax=700.0,linestyle='dashed',label='Atenção',linewidth=0.4,color='y')
-    ax2.axvline(x='1/AUGUST/2018', ymin=0.0, ymax=700.0,linestyle='dashed',label='Restrição',linewidth=0.4,color='red')
-    ax2.axvline(x='1/AUGUST/2019', ymin=0.0, ymax=700.0,linestyle='dashed',label='Restrição',linewidth=0.4,color='red')
-    ax2.axvline(x='1/AUGUST/2020', ymin=0.0, ymax=700.0,linestyle='dashed',label='Restrição',linewidth=0.4,color='red')
-    ax2.axvline(x='1/AUGUST/2021', ymin=0.0, ymax=700.0,linestyle='dashed',label='Restrição',linewidth=0.4,color='red')
-    ax2.axvline(x='1/AUGUST/2022', ymin=0.0, ymax=700.0,linestyle='dashed',label='Restrição',linewidth=0.4,color='red')
+    ax2.axvline(x='1/JUL/2018', ymin=0.0, ymax=700.0,linestyle='dashed',linewidth=0.4,color='y')
+    ax2.axvline(x='1/JUL/2019', ymin=0.0, ymax=700.0,linestyle='dashed',linewidth=0.4,color='y')
+    ax2.axvline(x='1/JUL/2020', ymin=0.0, ymax=700.0,linestyle='dashed',linewidth=0.4,color='y')
+    ax2.axvline(x='1/JUL/2021', ymin=0.0, ymax=700.0,linestyle='dashed',linewidth=0.4,color='y')
+    ax2.axvline(x='1/JUL/2022', ymin=0.0, ymax=700.0,linestyle='dashed',linewidth=0.4,color='y')
+    ax2.axvline(x='1/AUGUST/2018', ymin=0.0, ymax=700.0,linestyle='dashed',linewidth=0.4,color='red')
+    ax2.axvline(x='1/AUGUST/2019', ymin=0.0, ymax=700.0,linestyle='dashed',linewidth=0.4,color='red')
+    ax2.axvline(x='1/AUGUST/2020', ymin=0.0, ymax=700.0,linestyle='dashed',linewidth=0.4,color='red')
+    ax2.axvline(x='1/AUGUST/2021', ymin=0.0, ymax=700.0,linestyle='dashed',linewidth=0.4,color='red')
+    ax2.axvline(x='1/AUGUST/2022', ymin=0.0, ymax=700.0,linestyle='dashed',linewidth=0.4,color='red')
+    ax2.tick_params(axis='y', colors='black')
     if eixoy2 == 'Volume consumido (m³)':
+        ax2.ticklabel_format(axis="y", style="sci", scilimits=(0,0))
+        ax2.yaxis.set_label_text(eixoy2 + "x 10$^5$",color='black')
+        ax2.yaxis.offsetText.set_visible(False)
         ax2.set_ylim(1, 2.8e5)
     else:
+        ax2.set_ylabel(eixoy2, color='black')
         ax2.set_ylim(0, 5)
     plt.gcf().autofmt_xdate()
     ax2.set_xticks(["", "1/JUL/2017", "1/JAN/2018", "1/JUL/2018", "1/JAN/2019", "1/JUL/2019", "1/JAN/2020", "1/JUL/2020",
                    "1/JAN/2021", "1/JUL/2021", "1/JAN/2022", "1/JUL/2022", ""])
     ax1.set_xticks(ax2.get_xticks())
     plt.subplots_adjust(hspace=.0)
-    plt.show()
+    ax2.legend()
     handles, labels = plt.gca().get_legend_handles_labels()
     by_label = dict(zip(labels, handles))
-    plt.legend(by_label.values(), by_label.keys())
-    #plt.savefig(str(titulo_grafico) + '.jpg', format='jpg', bbox_inches='tight', dpi=600)  # salva a figura em jpg
+    ax2.legend(by_label.values(), by_label.keys(),loc='upper left', fontsize='x-small',ncol=8,bbox_to_anchor=(0, -0.25))
+    plt.show()
+    plt.savefig(str(titulo_grafico) + '.jpg', format='jpg', bbox_inches='tight', dpi=600)  # salva a figura em jpg
     plt.close(fig)
+
+def Plot2OfertaDemanda_bomba(eixoy1,eixoy2,eixoy3,serie_datas,serie_oferta1,serie_oferta2,matriz_demanda,titulo_grafico):
+    serie_oferta1 = serie_oferta1[372:, 1]
+    serie_oferta1 = [np.nan if i == "None" else float(i) for i in serie_oferta1]
+    serie_oferta2 = serie_oferta2[372:, 1]
+    serie_oferta2 = [np.nan if i == "None" else float(i) for i in serie_oferta2]
+    matriz_demanda = matriz_demanda[372:, 1:]
+    for i in range(0, len(matriz_demanda)):
+        for j in range(0, 37): #37 columns, from 0 to 36
+            if matriz_demanda[i, j] == 'None':
+                matriz_demanda[i, j] = np.nan
+    matriz_demanda = matriz_demanda.astype(np.float)
+    ordem_nova = [32,35,36,0,1,2,3,4,5,6,7,9,8,10,11,12,13,34,14,16,15,17,18,19,20,21,22,33,23,26,25,24,27,31,28,29,30] # ordem das bombas de montante a jusante da bacia
+    # ordem dos rótulos original = [1,2,3,4,5,6,7,8,9,10,11,12,14,15,16,17,18,19,20,21,22,23,25,26,30,31,32,33,34,35,36,37,38,39,40,41,42]
+    nova_matriz_demanda = np.empty([2232,37])
+    i = 0
+    for j in (ordem_nova):
+        nova_matriz_demanda[:,i] = matriz_demanda[:,j]
+        i+=1
+    matriz_demanda = nova_matriz_demanda
+    fig = plt.figure()
+    gs = gridspec.GridSpec(2, 1, height_ratios=[1, 1])  # plota vários gráficos numa mesma figura
+    # Oferta 1
+    ax1 = plt.subplot(gs[0])
+    ax1.bar(serie_datas, serie_oferta1, 1, color='c', ec='c', linestyle='solid', linewidth=1.0)
+    ax1.xaxis.grid(b=True, which='major', color='0.9', linestyle='--')
+    ax1.yaxis.grid(b=True, which='major', color='0.9', linestyle='--')
+    ax1.set_ylim(0, np.nanmax(serie_oferta1))
+    plt.setp(ax1.get_xticklabels(), visible=False)
+    plt.tight_layout()
+    plt.gcf().autofmt_xdate()
+    plt.gcf().subplots_adjust(bottom=0.1)
+    ax1.set_ylim(0, 700)
+    ax1.set_ylabel(eixoy1, color='b')
+    ax1.tick_params(axis='y', colors='b')
+    ax1.invert_yaxis()
+    #Oferta 2
+    ax3 = ax1.twinx()
+    ax3.plot(serie_datas, serie_oferta2, linestyle='solid', color='navy', linewidth=0.75)
+    ax3.xaxis.grid(b=True, which='major', color='0.9', linestyle='--')
+    ax3.yaxis.grid(b=True, which='major', color='0.9', linestyle='--')
+    ax3.set_ylim(0, np.nanmax(serie_oferta2))
+    plt.setp(ax1.get_xticklabels(), visible=False)
+    plt.tight_layout()
+    plt.gcf().autofmt_xdate()
+    plt.gcf().subplots_adjust(bottom=0.1)
+    ax3.set_ylim(0,700)
+    ax3.set_ylabel(eixoy3, color='b')
+    ax3.tick_params(axis='y', colors='b')
+
+    xs = np.linspace(0,2322,1)
+    ys = np.linspace(0,700,1)
+    #ax3.axvline(x='1/AGO/2018', ymin=0.0, ymax=700.0,linestyle='dashed',label='Restrição',linewidth=0.2,color='red')
+    #ax3.vlines(x=['1/JUL/2018','1/JUL/2019','1/JUL/2020','1/JUL/2021','1/JUL/2022'], ymin=0.0, ymax=len(ys),linestyle='dashed',label='Atenção',linewidth=1.0,color='yellow')
+    #ax3.vlines(x=['1/AGO/2018','1/AGO/2019','1/AGO/2020','1/AGO/2021'], ymin=0.0, ymax=700,linestyle='dashed',label='Restrição',linewidth=1.0,color='red')
+    ax3.axhline(y=398, xmin=0, xmax=len(xs),linestyle='dashed',label='Atenção',linewidth=0.4,color='y')
+    ax3.axhline(y=220, xmin=0, xmax=len(xs),linestyle='dashed',label='Restrição',linewidth=0.4,color='red')
+    ax3.legend(loc='lower left', fontsize='x-small',ncol=1)
+    handles, labels = plt.gca().get_legend_handles_labels()
+    by_label = dict(zip(labels, handles))
+    ax3.legend(by_label.values(), by_label.keys())
+
+    # Demanda
+    ax2 = plt.subplot(gs[1], sharex=ax1)
+    color = iter(cm.rainbow(np.linspace(0, 1, 37)))
+    for i in range(0,37):
+        c = next(color)
+        ax2.plot(serie_datas,list(matriz_demanda[:, i]), 'o', linestyle='None', label='bomba nº '+str(1+i),markerfacecolor="None",
+            markeredgecolor=c, markeredgewidth=0.5, markersize=3)
+    ax2.xaxis.grid(b=True, which='major', color='.9', linestyle='--')  # linhas de grade do eixo x
+    ax2.yaxis.grid(b=True, which='major', color='.9', linestyle='--')  # linhas de grade do eixo y
+    ax2.axvline(x='1/JUL/2018', ymin=0.0, ymax=700.0,linestyle='dashed',linewidth=0.4,color='y')
+    ax2.axvline(x='1/JUL/2019', ymin=0.0, ymax=700.0,linestyle='dashed',linewidth=0.4,color='y')
+    ax2.axvline(x='1/JUL/2020', ymin=0.0, ymax=700.0,linestyle='dashed',linewidth=0.4,color='y')
+    ax2.axvline(x='1/JUL/2021', ymin=0.0, ymax=700.0,linestyle='dashed',linewidth=0.4,color='y')
+    ax2.axvline(x='1/JUL/2022', ymin=0.0, ymax=700.0,linestyle='dashed',linewidth=0.4,color='y')
+    ax2.axvline(x='1/AUGUST/2018', ymin=0.0, ymax=700.0,linestyle='dashed',linewidth=0.4,color='red')
+    ax2.axvline(x='1/AUGUST/2019', ymin=0.0, ymax=700.0,linestyle='dashed',linewidth=0.4,color='red')
+    ax2.axvline(x='1/AUGUST/2020', ymin=0.0, ymax=700.0,linestyle='dashed',linewidth=0.4,color='red')
+    ax2.axvline(x='1/AUGUST/2021', ymin=0.0, ymax=700.0,linestyle='dashed',linewidth=0.4,color='red')
+    ax2.axvline(x='1/AUGUST/2022', ymin=0.0, ymax=700.0,linestyle='dashed',linewidth=0.4,color='red')
+    ax2.tick_params(axis='y', colors='black')
+    if eixoy2 == 'Volume consumido (m³)':
+        ax2.ticklabel_format(axis="y", style="sci", scilimits=(0,0))
+        ax2.yaxis.set_label_text(eixoy2 + "x 10$^5$",color='black')
+        ax2.yaxis.offsetText.set_visible(False)
+        ax2.set_ylim(1, 2.8e5)
+    else:
+        ax2.set_ylabel(eixoy2, color='black')
+        ax2.set_ylim(0, 5)
+    plt.gcf().autofmt_xdate()
+    ax2.set_xticks(["", "1/JUL/2017", "1/JAN/2018", "1/JUL/2018", "1/JAN/2019", "1/JUL/2019", "1/JAN/2020", "1/JUL/2020",
+                   "1/JAN/2021", "1/JUL/2021", "1/JAN/2022", "1/JUL/2022", ""])
+    ax1.set_xticks(ax2.get_xticks())
+    plt.subplots_adjust(hspace=.0)
+    ax2.legend()
+    handles, labels = plt.gca().get_legend_handles_labels()
+    by_label = dict(zip(labels, handles))
+    ax2.legend(by_label.values(), by_label.keys(),loc='upper left', fontsize='x-small',ncol=12,bbox_to_anchor=(0, -0.25))
+    plt.show()
+    plt.savefig(str(titulo_grafico) +'por_bomba.jpg', format='jpg', bbox_inches='tight', dpi=600)  # salva a figura em jpg
+    plt.close(fig)
+
+
 #Saída
 ##Individuais
 ###Vazão
@@ -345,7 +453,7 @@ eixoy3 = 'Nível (cm)'
 matriz_demanda = matrix_vazao_dem
 eixoy2 = 'Vazão consumida (m³/s)'
 titulo_grafico = "Chuva x Nível x 26798500 x Vazão"
-Plot2OfertaDemanda_irrigante(eixoy1,eixoy2,eixoy3,serie_datas,serie_oferta1,serie_oferta2,matriz_carac,matriz_demanda,titulo_grafico)
+#Plot2OfertaDemanda_irrigante(eixoy1,eixoy2,eixoy3,serie_datas,serie_oferta1,serie_oferta2,matriz_carac,matriz_demanda,titulo_grafico)
 ###Chuva x Vazao x Volume
 serie_oferta1 = serie_chuva2
 eixoy1 = 'Chuva (mm)'
@@ -354,5 +462,24 @@ eixoy3 = 'Nível (cm)'
 matriz_demanda = matrix_volume_dem
 eixoy2 = 'Volume consumido (m³)'
 titulo_grafico = "Chuva x Nível x 26798500 x Volume"
-Plot2OfertaDemanda_irrigante(eixoy1,eixoy2,eixoy3,serie_datas,serie_oferta1,serie_oferta2,matriz_carac,matriz_demanda,titulo_grafico)
+#Plot2OfertaDemanda_irrigante(eixoy1,eixoy2,eixoy3,serie_datas,serie_oferta1,serie_oferta2,matriz_carac,matriz_demanda,titulo_grafico)
 
+##Triplos - Por bomba
+###Chuva x Vazao x Vazao
+serie_oferta1 = serie_chuva2
+eixoy1 = 'Chuva (mm)'
+serie_oferta2 = serie_nivel2
+eixoy3 = 'Nível (cm)'
+matriz_demanda = matrix_vazao_dem
+eixoy2 = 'Vazão consumida (m³/s)'
+titulo_grafico = "Chuva x Nível x 26798500 x Vazão"
+Plot2OfertaDemanda_bomba(eixoy1,eixoy2,eixoy3,serie_datas,serie_oferta1,serie_oferta2,matriz_demanda,titulo_grafico)
+###Chuva x Vazao x Volume
+serie_oferta1 = serie_chuva2
+eixoy1 = 'Chuva (mm)'
+serie_oferta2 = serie_nivel2
+eixoy3 = 'Nível (cm)'
+matriz_demanda = matrix_volume_dem
+eixoy2 = 'Volume consumido (m³)'
+titulo_grafico = "Chuva x Nível x 26798500 x Volume"
+Plot2OfertaDemanda_bomba(eixoy1,eixoy2,eixoy3,serie_datas,serie_oferta1,serie_oferta2,matriz_demanda,titulo_grafico)
