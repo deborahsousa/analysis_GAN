@@ -92,10 +92,10 @@ def crawler_csv(type, datatype, outfile):
 
 
 if __name__ == "__main__":
-    # crawler_csv(Interventions, InterventionsDataType.VAZAO, "vazao.csv")
-    # crawler_csv(Interventions, InterventionsDataType.CONSUMO, "consumo.csv")
+    crawler_csv(Interventions, InterventionsDataType.VAZAO, "vazao1609.csv")
+    #crawler_csv(Interventions, InterventionsDataType.CONSUMO, "consumo1609.csv")
 
-    crawler_csv(Stations, StationsDataType.VAZAO, "estacao_vazao.csv")
-    crawler_csv(Stations, StationsDataType.NIVEL, "nivel.csv")
-    crawler_csv(Stations, StationsDataType.CHUVA, "chuva.csv")
+    #crawler_csv(Stations, StationsDataType.VAZAO, "estacao_vazao16-09.csv")
+    #crawler_csv(Stations, StationsDataType.NIVEL, "nivel16-09.csv")
+    #crawler_csv(Stations, StationsDataType.CHUVA, "chuva16-09.csv")
 
