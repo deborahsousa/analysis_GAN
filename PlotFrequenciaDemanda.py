@@ -220,21 +220,21 @@ def ListaCategoriasSecaAnual15d(matriz_carac,matriz_demanda,categoria):
     matriz_demanda[:,[6,7,25,26,27,28,29,33,34]] = np.nan
 
     ix_sem1a = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '1/MAY'] #índice da linha da data inicial da semana 1
-    ix_sem1b = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '16/MAY'] #índice da linha da data final da semana 1
-    ix_sem2a = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '17/MAY'] #índice da linha da data inicial da semana 2
-    ix_sem2b = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '1/JUNE'] #índice da linha da data final da semana 2
-    ix_sem3a = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '2/JUNE'] #índice da linha da data inicial da semana 3
-    ix_sem3b = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '17/JUNE'] #índice da linha da data final da semana 3
-    ix_sem4a = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '18/JUNE'] #índice da linha da data inicial da semana 4
-    ix_sem4b = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '3/JULY'] #índice da linha da data final da semana 4
-    ix_sem5a = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '4/JULY'] #índice da linha da data inicial da semana 5
-    ix_sem5b = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '19/JULY'] #índice da linha da data final da semana 5
-    ix_sem6a = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '20/JULY'] #índice da linha da data inicial da semana 6
-    ix_sem6b = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '4/AUGUST'] #índice da linha da data final da semana 6
-    ix_sem7a = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '5/AUGUST'] #índice da linha da data inicial da semana 7
-    ix_sem7b = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '20/AUGUST'] #índice da linha da data final da semana 7
-    ix_sem8a = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '21/AUGUST'] #índice da linha da data inicial da semana 8
-    ix_sem8b = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '5/SEPTEMBER'] #índice da linha da data final da semana 8
+    ix_sem1b = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '15/MAY'] #índice da linha da data final da semana 1
+    ix_sem2a = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '16/MAY'] #índice da linha da data inicial da semana 2
+    ix_sem2b = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '30/MAY'] #índice da linha da data final da semana 2
+    ix_sem3a = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '31/MAY'] #índice da linha da data inicial da semana 3
+    ix_sem3b = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '14/JUNE'] #índice da linha da data final da semana 3
+    ix_sem4a = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '15/JUNE'] #índice da linha da data inicial da semana 4
+    ix_sem4b = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '29/JUNE'] #índice da linha da data final da semana 4
+    ix_sem5a = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '30/JUNE'] #índice da linha da data inicial da semana 5
+    ix_sem5b = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '14/JULY'] #índice da linha da data final da semana 5
+    ix_sem6a = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '15/JULY'] #índice da linha da data inicial da semana 6
+    ix_sem6b = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '29/JULY'] #índice da linha da data final da semana 6
+    ix_sem7a = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '30/JULY'] #índice da linha da data inicial da semana 7
+    ix_sem7b = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '13/AUGUST'] #índice da linha da data final da semana 7
+    ix_sem8a = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '14/AUGUST'] #índice da linha da data inicial da semana 8
+    ix_sem8b = [i for i, v in enumerate(matriz_demanda[:, 0]) if v == '31/AUGUST'] #índice da linha da data final da semana 8
 
     #definindo em variáveis os índices onde se encontram as datas definidas
     a = ix_sem1a
@@ -468,10 +468,12 @@ def ListaCategoriasSecaAnual15d(matriz_carac,matriz_demanda,categoria):
 
 def PlotHistCategoria(lista_demanda_categ,titulo_grafico):
     #list_bins = np.arange(500, 185001, 46125)
-    list_bins = np.arange(500, 190001, 10000)
-    # list_bins = np.insert(list_bins,0,100)
-    # list_bins = np.insert(list_bins, 0,1000)
-    list_bins = np.insert(list_bins, 0, 0)
+    list_bins = np.arange(1000, 191001, 10000)
+    list_bins = np.insert(list_bins, 0,100)
+    list_bins = np.insert(list_bins, 0,1)
+    list_bins = np.insert(list_bins, 0,0)
+    #list_bins = np.insert(list_bins, 0, 1.0)
+    #list_bins = np.insert(list_bins, 0, 0)
     #my_total_comzero = len(lista_demanda_categ)
     # lista_demanda_categ_sem0 = [i for i in lista_demanda_categ if i != 0.0]  # lista sem número 0.0
     # lista_demanda_categ_0 = [i for i in lista_demanda_categ if i == 0.0]  # lista sem número 0.0
@@ -495,7 +497,7 @@ def PlotHistCategoria(lista_demanda_categ,titulo_grafico):
     my_bins = fig2[1]
     my_perc = fig2[0]
     np.savetxt('list_perc_sem9bombas' +str(titulo_grafico)+'.csv',my_perc)
-    np.savetxt('list_bins_sem9bombas' + str(titulo_grafico) + '.csv', my_bins)
+    #np.savetxt('list_bins_sem9bombas' + str(titulo_grafico) + '.csv', my_bins)
     #ax2.hist(lista_demanda_categ,density=True,bins=list_bins, histtype = 'stepfilled',cumulative = True,label = 'freq. acum.',color='lightgrey')
     #plt.hist(lista_demanda_categ, bins=list_bins)
     #plt.hist(lista_demanda_categ, bins=list_bins,weights=np.ones_like(lista_demanda_categ)*100/len(lista_demanda_categ))
@@ -507,7 +509,7 @@ def PlotHistCategoria(lista_demanda_categ,titulo_grafico):
     ax2.set_ylim(0, 1.1)
     ax1.legend(loc=2)
     ax2.legend(loc=0)
-    #plt.savefig(str(titulo_grafico)+'BinCteHistogramaSem9bombas.jpg',format='jpg',dpi=600) # salva a figura em jpg
+    plt.savefig(str(titulo_grafico)+' HistogramaConsistido.jpg',format='jpg',dpi=600) # salva a figura em jpg
     #plt.show()
     plt.close()
 
@@ -549,17 +551,17 @@ matriz_demanda = matrix_volume_dem
 # semanal NC
 categoria = 'NC'
 for z in range(1,9):
-    titulo = str(categoria) + ' semana '+str(z)
+    titulo = str(categoria) + ' quinzena '+str(z)
     PlotHistCategoria(ListaCategoriasSecaAnual15d(matriz_carac, matriz_demanda, categoria)[z-1], titulo)
 # semanal CP
 categoria = 'CP'
 for z in range(1,9):
-    titulo = str(categoria) + ' semana '+str(z)
+    titulo = str(categoria) + ' quinzena '+str(z)
     PlotHistCategoria(ListaCategoriasSecaAnual15d(matriz_carac, matriz_demanda, categoria)[z-1], titulo)
 # semanal CI
 categoria = 'CI'
 for z in range(1,9):
-    titulo = str(categoria) + ' semana '+str(z)
+    titulo = str(categoria) + ' quinzena '+str(z)
     PlotHistCategoria(ListaCategoriasSecaAnual15d(matriz_carac, matriz_demanda, categoria)[z-1], titulo)
 l = 1
 

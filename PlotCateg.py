@@ -75,7 +75,7 @@ def SubmatrizCategorias(matriz_carac,matriz_demanda,serie_oferta):
     # matriz_demanda[:,36] = np.nan
 
     matriz_demanda = matriz_demanda.astype(np.float)
-    np.savetxt('matriz_seca_bombas_ordemnormal.csv',matriz_demanda)
+    #np.savetxt('matriz_seca_bombas_ordemnormal.csv',matriz_demanda)
 
     ordem_nova = [32, 35, 36, 0, 1, 2, 3, 4, 5, 6, 7, 9, 8, 10, 11, 12, 13, 34, 14, 16, 15, 17, 18, 19, 20, 21, 22, 33,
                   23, 26, 25, 24, 27, 31, 28, 29, 30]  # ordem das bombas de montante a jusante da bacia
@@ -580,17 +580,82 @@ m_D3 = a[6]
 serie_datas_seca = a[7]
 serie_oferta_seca = a[8]
 #np.savetxt('serie_oferta_seca.txt',serie_oferta_seca)
-titulo_grafico = "Volume da bomba com regras"
-categoria = 'NC'
-matriz_categ = m_NC
-PlotBombaRegrasSeca(matriz_categ,categoria,serie_datas_seca,serie_oferta_seca,titulo_grafico)
-categoria = 'CI'
-matriz_categ = m_CI
-PlotBombaRegrasSeca(matriz_categ,categoria,serie_datas_seca,serie_oferta_seca,titulo_grafico)
-categoria = 'CP'
-matriz_categ = m_CP
-PlotBombaRegrasSeca(matriz_categ,categoria,serie_datas_seca,serie_oferta_seca,titulo_grafico)
-l = 1
+
+a = SubmatrizCategorias(matriz_carac,matriz_demanda,serie_oferta)
+# matriz_demanda = a[0]
+m_NC = a[1]
+m_CI = a[2]
+m_CP = a[3]
+m_D1 = a[4]
+m_D2 = a[5]
+m_D3 = a[6]
+serie_datas_seca = a[7]
+serie_oferta_seca = a[8]
+xs = np.linspace(0, len(serie_datas_seca), 1)
+ys = np.linspace(0, 700, 1)
+# regras do biênio
+y_yellow = 398
+y_red = 220
+d11 = '1/JULY/2018'
+d21 = '1/AUGUST/2018'
+d12 = '1/JULY/2019'
+d22 = '1/AUGUST/2019'
+d13 = '1/JULY/2020'
+d23 = '1/AUGUST/2020'
+d14 = '1/JULY/2021'
+d24 = '1/AUGUST/2021'
+d15 = '1/JULY/2022'
+d25 = '1/AUGUST/2022'
+plt.axhline(y=y_yellow, xmin=0, xmax=len(xs), linestyle='dashed', label='Atenção', linewidth=0.4, color='y')
+plt.axhline(y=y_red, xmin=0, xmax=len(xs), linestyle='dashed', label='Restrição', linewidth=0.4, color='red')
+# plt.axvline(x=d11, ymin=0.0, ymax=len(ys), linestyle='dashed', linewidth=0.4, color='y')
+# plt.axvline(x=d12, ymin=0.0, ymax=len(ys), linestyle='dashed', linewidth=0.4, color='y')
+# plt.axvline(x=d13, ymin=0.0, ymax=len(ys), linestyle='dashed', linewidth=0.4, color='y')
+# plt.axvline(x=d14, ymin=0.0, ymax=len(ys), linestyle='dashed', linewidth=0.4, color='y')
+# plt.axvline(x=d15, ymin=0.0, ymax=len(ys), linestyle='dashed', linewidth=0.4, color='y')
+# plt.axvline(x=d21, ymin=0.0, ymax=len(ys), linestyle='dashed', linewidth=0.4, color='red')
+# plt.axvline(x=d22, ymin=0.0, ymax=len(ys), linestyle='dashed', linewidth=0.4, color='red')
+# plt.axvline(x=d23, ymin=0.0, ymax=len(ys), linestyle='dashed', linewidth=0.4, color='red')
+# plt.axvline(x=d24, ymin=0.0, ymax=len(ys), linestyle='dashed', linewidth=0.4, color='red')
+# plt.axvline(x=d25, ymin=0.0, ymax=len(ys), linestyle='dashed', linewidth=0.4, color='red')
+# plt.axvline(x='1/MAY/2018', ymin=0.0, ymax=len(ys), linestyle='dashed', linewidth=1.0, color='black')
+# plt.axvline(x='1/MAY/2019', ymin=0.0, ymax=len(ys), linestyle='dashed', linewidth=1.0, color='black')
+# plt.axvline(x='1/MAY/2020', ymin=0.0, ymax=len(ys), linestyle='dashed', linewidth=1.0, color='black')
+# plt.axvline(x='1/MAY/2021', ymin=0.0, ymax=len(ys), linestyle='dashed', linewidth=1.0, color='black')
+# plt.axvline(x='1/MAY/2022', ymin=0.0, ymax=len(ys), linestyle='dashed', linewidth=1.0, color='black')
+# y = serie_oferta_seca[:,1]
+plt.fill_between(serie_datas_seca, y_yellow, y_red, color='yellow', alpha=0.1)
+plt.fill_between(serie_datas_seca, 0, y_red, color='red', alpha=0.1)
+# plt.fill_betweenx(y, d11, d21, color='yellow', alpha=0.1)
+# plt.fill_betweenx(y, d21, '31/AUGUST/2018', color='red', alpha=0.1)
+# plt.fill_betweenx(y, d12, d22, color='yellow', alpha=0.1)
+# plt.fill_betweenx(y, d22, '31/AUGUST/2019', color='red', alpha=0.1)
+# plt.fill_betweenx(y, d13, d23, color='yellow', alpha=0.1)
+# plt.fill_betweenx(y, d23, '31/AUGUST/2020', color='red', alpha=0.1)
+# plt.fill_betweenx(y, d14, d24, color='yellow', alpha=0.1)
+# plt.fill_betweenx(y, d24, '31/AUGUST/2021', color='red', alpha=0.1)
+# plt.fill_betweenx(y, d15, d25, color='yellow', alpha=0.1)
+# plt.fill_betweenx(y, d25, '31/AUGUST/2022', color='red', alpha=0.1)
+
+plt.plot(serie_datas_seca,serie_oferta_seca[:,1])
+labels = serie_datas_seca
+plt.gcf().autofmt_xdate()
+# plt.xticks(labels[::1])
+plt.show()
+
+
+
+# titulo_grafico = "Volume da bomba com regras"
+# categoria = 'NC'
+# matriz_categ = m_NC
+# PlotBombaRegrasSeca(matriz_categ,categoria,serie_datas_seca,serie_oferta_seca,titulo_grafico)
+# categoria = 'CI'
+# matriz_categ = m_CI
+# PlotBombaRegrasSeca(matriz_categ,categoria,serie_datas_seca,serie_oferta_seca,titulo_grafico)
+# categoria = 'CP'
+# matriz_categ = m_CP
+# PlotBombaRegrasSeca(matriz_categ,categoria,serie_datas_seca,serie_oferta_seca,titulo_grafico)
+# l = 1
 
 # eixoy = 'Volume consumido (m³)'
 # titulo_grafico = 'Volume consumido'
